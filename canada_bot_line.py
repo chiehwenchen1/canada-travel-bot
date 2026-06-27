@@ -389,6 +389,10 @@ def main():
             break
 
 
+# ── WSGI entry point ────────────────────────────────────────────────
+app = create_app()
+
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     
