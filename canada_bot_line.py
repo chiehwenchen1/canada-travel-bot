@@ -16,7 +16,7 @@
   3. 部署到雲端或本機 ngrok
 """
 
-import os, sys, json, re, logging
+import os, sys, json, re, logging, base64
 from pathlib import Path
 
 # ── 設定 ──────────────────────────────────────────────────────
