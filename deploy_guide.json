@@ -1,0 +1,73 @@
+{
+  "name": "加拿大旅行 Line Bot 部署指南",
+  "steps": [
+    {
+      "step": 1,
+      "title": "建立 Line Messaging API Channel",
+      "url": "https://developers.line.biz/console/",
+      "instructions": [
+        "用你的 Line 帳號登入",
+        "按「Create Provider」→ 取名「Canada Travel」",
+        "按「Create Channel」→ 選擇「Messaging API」",
+        "填寫：Channel name → 「加拿大旅行小幫手」",
+        "Category → 「Travel」",
+        "其他隨便填"
+      ]
+    },
+    {
+      "step": 2,
+      "title": "取得金鑰",
+      "instructions": [
+        "在 Channel 的 Basic Settings → Channel Secret（複製）",
+        "往下 Messaging API → 按 Issue 產生 Channel Access Token（複製）"
+      ]
+    },
+    {
+      "step": 3,
+      "title": "設定金鑰到程式",
+      "instructions": [
+        "執行：python canada_bot_line.py setup",
+        "貼上 Access Token 和 Channel Secret"
+      ]
+    },
+    {
+      "step": 4,
+      "title": "部署方案選擇",
+      "options": [
+        {
+          "name": "方案A：Render 雲端部署（推薦，永久可用）",
+          "instructions": [
+            "1. 把 D:\\bible\\travel\\canada 推到 GitHub",
+            "2. 到 render.com 註冊 → New Web Service",
+            "3. 連 GitHub repo",
+            "4. Start Command: gunicorn canada_bot_line:app",
+            "5. Add Environment Variables:",
+            "   LINE_CHANNEL_ACCESS_TOKEN = 剛才複製的",
+            "   LINE_CHANNEL_SECRET = 剛才複製的",
+            "6. Create → 拿到 https://xxxx.onrender.com",
+            "7. 回 Line Console → Messaging API → Webhook URL",
+            "   貼上 https://xxxx.onrender.com/webhook",
+            "8. 按 Verify → 顯示 Success 就完成了"
+          ]
+        },
+        {
+          "name": "方案B：OpenClaw 轉接（最簡單）",
+          "instructions": [
+            "直接把問題傳給我，我當成 bot 回答",
+            "優點：不用部署、不用架伺服器",
+            "缺點：組長需要透過你"
+          ]
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "title": "加入好友 & 測試",
+      "instructions": [
+        "Line Console → Messaging API → QR code",
+        "掃碼加入好友",
+        "傳「幫助」試試"
+      ]
+    }
+  ]
+}
